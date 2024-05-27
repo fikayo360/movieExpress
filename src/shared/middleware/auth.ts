@@ -23,3 +23,13 @@ export const authUser = async (req:Request, res: Response, next: NextFunction) =
     }
 };
 
+export const isAdmin = async (req:Request, res: Response, next: NextFunction) =>{
+  const user = req.user
+  if(user.role === "admin"){
+    logger.info(`welcome admin ${user.username}`)
+    next();
+  }
+  else{
+    return res.status(400).json("not an admn access denied");
+  }
+}
