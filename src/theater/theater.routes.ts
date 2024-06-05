@@ -1,9 +1,11 @@
 import express, { Router } from 'express';
-import { theaterController } from './theater.controller';
+import theaterController from './theater.controller';
+import { authUser } from '../shared/middleware/auth';
 const router:Router = express.Router()
-const theater = theaterController.prototype
 
-router.route("/create").post(theater.createTheater)
-router.route("/get").put(theater.getTheater)
-router.route("/all").post(theater.getAllTheater)
-router.route("/delete").delete(theater.deleteTheater)
+router.route("/create").post(authUser,theaterController.createTheater)
+router.route("/get/:id").get(authUser,theaterController.getTheater)
+router.route("/all").get(authUser,theaterController.getAllTheater)
+router.route("/delete/:id").delete(authUser,theaterController.deleteTheater)
+
+export default router

@@ -1,7 +1,10 @@
 import express, { Router } from 'express';
-import { bookingsController } from './bookings.controller';
-const router:Router = express.Router()
-const booking = bookingsController.prototype
+import bookingsController from './bookings.controller';
+import { authUser } from '../shared/middleware/auth';
 
-router.route("/create").post(booking.createBooking)
-router.route("/verify").get(booking.verifyBookingId)
+const router:Router = express.Router()
+
+router.route("/create").post(authUser,bookingsController.createBooking)
+router.route("/verify/:bookingId").get(authUser,bookingsController.verifyBookingId)
+
+export default router

@@ -1,6 +1,6 @@
 export interface SeatType{
+    id:string
     theaterId:string
-    seatNumber:number,
-    availability:boolean,
+    seatnumber:number
     showtimeId:string
 }

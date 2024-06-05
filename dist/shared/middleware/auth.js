@@ -35,29 +35,50 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var StatusCodes = require('http-status-codes');
+exports.isAdmin = exports.authUser = void 0;
+var logger_1 = __importDefault(require("../config/logger"));
+var http_status_codes_1 = require("http-status-codes");
 var isTokenValid = require('../services/isTokenValid');
 var authUser = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var authHeader, tokenData, token, _a, username, userId;
+    var authHeader, tokenData, token, _a, sub, email, role;
     return __generator(this, function (_b) {
         authHeader = req.headers.authorization;
         if (!authHeader || !authHeader.startsWith("Bearer")) {
-            console.log('no token! access denied');
+            logger_1.default.error('no token! access denied');
             return [2 /*return*/, res.status(400).json("no token! access denied")];
         }
         tokenData = authHeader.split(" ");
         token = tokenData[1];
         try {
-            _a = isTokenValid(token), username = _a.username, userId = _a.userId;
-            req.user = { username: username, userId: userId };
+            _a = isTokenValid(token), sub = _a.sub, email = _a.email, role = _a.role;
+            console.log({ sub: sub, email: email, role: role });
+            req.user = { sub: sub, email: email, role: role };
             next();
         }
         catch (error) {
-            console.log('token expired');
-            res.status(StatusCodes.UNAUTHORIZED).json("Token expired");
+            logger_1.default.error('token expired');
+            res.status(http_status_codes_1.StatusCodes.UNAUTHORIZED).json("Token expired");
         }
         return [2 /*return*/];
     });
 }); };
-module.exports = authUser;
+exports.authUser = authUser;
+var isAdmin = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var user;
+    return __generator(this, function (_a) {
+        user = req.user;
+        if (user.role === "admin") {
+            logger_1.default.info("welcome admin ".concat(user.sub));
+            next();
+        }
+        else {
+            return [2 /*return*/, res.status(400).json("not an admn access denied")];
+        }
+        return [2 /*return*/];
+    });
+}); };
+exports.isAdmin = isAdmin;

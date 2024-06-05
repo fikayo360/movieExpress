@@ -3,16 +3,16 @@ import sequelizee from "../postgresConfig"
 import { Theater } from "./Theater"
 import Movie from "./Movie"
 
-export const Showtimes = sequelizee.define('Showtimes', {
+export const Showtime = sequelizee.define('Showtimes', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
       },
       startTime: {
-        type: DataTypes.DATE
+        type: DataTypes.TIME
       },
       endTime: {
-        type: DataTypes.DATE
+        type: DataTypes.TIME
       },
       theaterId: {
         type: DataTypes.UUID,
@@ -28,8 +28,8 @@ export const Showtimes = sequelizee.define('Showtimes', {
     }
   }); 
 
-  Showtimes.sync().then(() => {
+  Showtime.sync().then(() => {
     console.log("Showtimes Model synced");
   });
 
-export default Showtimes
+export default Showtime

@@ -1,10 +1,10 @@
 import Joi from 'joi';
 
 const createShowtimeSchema = Joi.object({
-    movieId: Joi.string().email().required(),
+    movieId: Joi.string().required(),
     theaterId: Joi.string().required(),
-    startTime: Joi.string().min(4).required(),
-    endTime: Joi.string().min(4).required(),
+    startTime: Joi.string().required(),
+    endTime: Joi.string().required(),
   });
 
 export default createShowtimeSchema

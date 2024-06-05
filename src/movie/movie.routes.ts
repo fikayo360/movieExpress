@@ -1,10 +1,11 @@
 import express, { Router } from 'express';
-import { movieController } from './movie.controller';
+import movieController from './movie.controller';
 const router:Router = express.Router()
-const movie = movieController.prototype
+import { authUser } from '../shared/middleware/auth';
+router.route("/create").post(authUser,movieController.createMovie)
+router.route("/update/:movieId").put(authUser,movieController.updateMovie)
+router.route("/search").get(authUser,movieController.searchMovie)
+router.route("/delete/:movieId").delete(authUser,movieController.deleteMovie)
+router.route("/theaterMovies/:theaterId").get(authUser,movieController.getMoviesByTheaterId)
 
-router.route("/create").post(movie.createMovie)
-router.route("/update").put(movie.updateMovie)
-router.route("/search").post(movie.searchMovie)
-router.route("/delete").delete(movie.deleteMovie)
-router.route("/theaterMovies").get(movie.getMoviesByTheaterId)
+export default router

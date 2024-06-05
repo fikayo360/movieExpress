@@ -1,17 +1,17 @@
-import { authDb } from './auth.repo';
+
 import * as bcrypt from 'bcryptjs'
 import { Tokens } from '../shared/interfaces/tokenPayload';
 import { jwtPayload } from '../shared/interfaces/tokenPayload';
 import jwt, {  Secret } from 'jsonwebtoken';
-import { response } from 'express';
-import { FindUser } from '../shared/interfaces/foundUser';
+import { response,Response} from 'express';
+import authRepo from './auth.repo';
+const auth = authRepo
 
-export class authServices{
-    constructor(private readonly authDb:authDb){}
+ class authServices{
 
     async userExists(username:string,email:string){
-        const userExists = await this.authDb.findUsername(username)
-        const emailExists = await this.authDb.findEmail(email)
+        const userExists = await auth.findUsername(username)
+        const emailExists = await auth.findEmail(email)
         if(userExists && emailExists){
             return true
         }
@@ -23,12 +23,13 @@ export class authServices{
         return hashedPassword
     }
 
-    async createUser(payload:{id:string,username:string,email:string,password:string,role:string}){
-        this.authDb.createUser(payload)
-        this.getTokens(payload.id,payload.email)
+    async createUser(payload:{id:string,username:string,email:string,password:string,role:string},res:Response){
+        auth.createUser(payload)
+        return this.getTokens(payload.id,payload.email,res)
     }
 
-     getTokens(userId: string, email: string):Tokens {
+     getTokens(userId: string, email: string,res:Response):Tokens{
+      console.log(process.env.JWT_SECRET);
         const defaultRole = 'user'
         const jwtPayload: jwtPayload = {
           sub: userId,
@@ -41,7 +42,7 @@ export class authServices{
         const rt = jwt.sign(jwtPayload,process.env.RT_SECRET as Secret,{
             expiresIn:process.env.RT_LIFETIME
         })
-        response.cookie('refreshToken', rt, {
+        res.cookie('refreshToken', rt, {
             httpOnly: true,
             secure: true,
             maxAge: 7 * 24 * 60 * 60 * 1000
@@ -54,11 +55,11 @@ export class authServices{
       }
 
       async findUsername(username: string):Promise<any>{
-        return this.authDb.findUsername(username) 
+        return auth.findUsername(username) 
      }
 
      async findEmail(email: string):Promise<any>{
-        return this.authDb.findEmail(email) 
+        return auth.findEmail(email) 
      }
 
      comparePasswords(current:string,old:string){
@@ -66,26 +67,28 @@ export class authServices{
      }
 
      compareRt(current:string,old:string){
-        return bcrypt.compareSync(current,old)
+        return current === old
      }
 
-     async updateToken(reset:string,id:string){
-         return this.authDb.updateResetToken(reset,id)
+     async updateToken(reset:string,userId:string){
+         return auth.updateResetToken(reset,userId)
      }
 
      async changePassword(newPassword:string,id:string){
-          return this.authDb.changePassword(newPassword,id)
+          return auth.changePassword(newPassword,id)
      }
 
      async findId(id:string){
-        return this.authDb.findId(id)
+        return auth.findId(id)
      }
 
      async updatedRefreshTokenHash(id:string,hash:string){
-        return this.authDb.updateRefreshTokenHash(id,hash)
+        return auth.updateRefreshTokenHash(id,hash)
      }
 
-     async updateRtToNull(id:string){
-        return this.authDb.updateRefreshTokenToNull(id)
+     async updateRtToNull(userId:string){
+        return auth.updateRefreshTokenToNull(userId)
      }
 }
+
+export default new authServices()

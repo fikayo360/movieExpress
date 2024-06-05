@@ -9,7 +9,7 @@ var sequelizee = new sequelize_1.Sequelize('postgres://fikayo:kVSGAs4N8YKdDSAzMr
             require: true,
         },
     },
-    logging: false,
+    logging: console.log,
 });
 sequelizee
     .authenticate()
@@ -19,4 +19,4 @@ sequelizee
     .catch(function (error) {
     console.log('Connection failed:', error);
 });
-module.exports = sequelizee;
+exports.default = sequelizee;

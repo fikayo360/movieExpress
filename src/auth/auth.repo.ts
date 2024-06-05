@@ -1,6 +1,6 @@
 import { User } from "../database/models/User";
 
-export class authDb {
+ class authDb {
 
     findUsername(username:string){
         return User.findOne({where:{username:username}})
@@ -17,12 +17,12 @@ export class authDb {
           });
     }
     
-    updateResetToken(reset:string,id:string){
+    updateResetToken(reset:string,userId:string){
         return User.update({
             resettoken: reset
           }, {
             where: {
-              userId: id
+                id: userId
             }
           });
     }
@@ -33,13 +33,13 @@ export class authDb {
             password:newPassword
           }, {
             where: {
-              userId:id
+              id:id
             }
           });
     }
 
     findId(userId:string){
-        return User.findOne({where:{userId:userId}})
+        return User.findOne({where:{id:userId}})
     }
 
     updateRefreshTokenHash(id:string,hash:string){
@@ -47,7 +47,7 @@ export class authDb {
             hashedRt:hash
         },{
             where:{
-                userId:id
+                id:id
             }
         })
     }
@@ -57,8 +57,10 @@ export class authDb {
             hashedRt:null
         },{
             where:{
-                userId:userId
+                id:userId
             }
         })
     }
 }
+
+export default new authDb()

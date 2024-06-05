@@ -1,17 +1,18 @@
-import { Showtimes } from "../database/models/Showtimes";
+import Showtime from "../database/models/Showtime";
 import { ShowtimesType } from "./types/showtimes";
 
-export class ShowtimeDb{
+ class showtimeDb{
 
     createShowtime(dto:ShowtimesType){
         const {id,movieId,theaterId,startTime,endTime} = dto
-        return Showtimes.create({
+        console.log({id,movieId,theaterId,startTime,endTime} );
+        return Showtime.create({
             id,movieId,theaterId,startTime,endTime
         })
     }
  
     deleteShowtimes(id:string){
-        return Showtimes.destroy({
+        return Showtime.destroy({
             where:{
                 id:id
             }
@@ -19,10 +20,12 @@ export class ShowtimeDb{
     }
 
     getShowtimes(movieId:string){
-        return Showtimes.findAll({
+        return Showtime.findAll({
             where:{
-                id:movieId
+                movieId:movieId
             }
         })
     }
 }
+
+export default new showtimeDb

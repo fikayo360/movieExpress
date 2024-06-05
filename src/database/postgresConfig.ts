@@ -10,7 +10,7 @@ const sequelizee = new Sequelize(
         require: true,
       },
     },
-    logging: false,
+    logging: console.log,
   },
 )
 

@@ -3,4 +3,4 @@ export interface FindUser {
     [key: string]: unknown;
   }
 
-export type FoundUser = Record<string|number,string|number|boolean|undefined|null>
+export type FoundUser = Record<string,any>

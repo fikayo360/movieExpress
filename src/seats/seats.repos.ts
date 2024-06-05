@@ -1,17 +1,17 @@
 import { SeatType } from "./types/seat.type";
-import { Seats } from "../database/models/Seat";
+import { Seat } from "../database/models/Seat";
 
-export class seatDB {
+class seatDB {
 
     createShowtimesSeat(seat:SeatType){
-        const {theaterId,seatNumber,availability,showtimeId} = seat
-        return Seats.create({
-            theaterId,seatNumber,availability,showtimeId
+        const {id,theaterId,seatnumber,showtimeId} = seat
+        return Seat.create({
+            id,theaterId,seatnumber,showtimeId
         })
     }
 
     getShowtimesSeat(showtimeId:string){
-        return Seats.findOne({
+        return Seat.findOne({
             where:{
                 showtimeId:showtimeId
             }
@@ -19,7 +19,7 @@ export class seatDB {
     }
 
     fetchAvailableSeats(showtimeId:string){
-        return Seats.findAll({
+        return Seat.findAll({
             where:{
                 showtimeId:showtimeId,
                 availability:true
@@ -28,7 +28,7 @@ export class seatDB {
     }
 
     fetchUnAvailableSeats(showtimeId:string){
-        return Seats.findAll({
+        return Seat.findAll({
             where:{
                 showtimeId:showtimeId,
                 availability:false
@@ -36,14 +36,16 @@ export class seatDB {
         })
     }
 
-    chooseSeat(showtimeId:string,seatNo:number){
-        return Seats.update({
+    chooseSeat(showtimeId:string,seatnumber:number){
+        return Seat.update({
             availability:false
         },{
             where:{
                 showtimeId:showtimeId,
-                seatNo:seatNo
+                seatnumber:seatnumber
             }
         })
     }
 }
+
+export default new seatDB

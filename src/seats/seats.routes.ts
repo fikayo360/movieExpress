@@ -1,10 +1,11 @@
 import express, { Router } from 'express';
-import { seatController } from './seats.controller';
+import seatsController from './seats.controller';
 const router:Router = express.Router()
-const seats = seatController.prototype
 
-router.route("/createSeats").post(seats.createSeatByShowtimes)
-router.route("/fetchSeats").get(seats.fetchSeatByShowtimes)
-router.route("/chooseSeat").get(seats.chooseSeatByShowtimes)
-router.route("/availableSeats").get(seats.fetchAvailableSeats)
-router.route("/unAvailableSeats").get(seats.fetchUnAvailableSeats)
+router.route("/createSeats").post(seatsController.createSeatByShowtimes)
+router.route("/fetchSeats/:showtimeId").get(seatsController.fetchSeatByShowtimes)
+router.route("/chooseSeat/:showtimeId/:seatnumber").get(seatsController.chooseSeatByShowtimes)
+router.route("/availableSeats/:showtimeId").get(seatsController.fetchAvailableSeats)
+router.route("/unAvailableSeats/:showtimeId").get(seatsController.fetchUnAvailableSeats)
+
+export default router

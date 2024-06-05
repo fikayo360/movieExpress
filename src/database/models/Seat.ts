@@ -1,9 +1,9 @@
 import { DataTypes } from "sequelize"
 import sequelizee from "../postgresConfig"
-import { Showtimes } from "./Showtimes"
+import Showtime from "./Showtime";
 import { Theater } from "./Theater"
 
-export const Seats = sequelizee.define('Seats', {
+export const Seat = sequelizee.define('Seats', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
@@ -19,18 +19,19 @@ export const Seats = sequelizee.define('Seats', {
       },
       availability: {
         type: DataTypes.BOOLEAN,
+        allowNull: true,
         defaultValue: true
       },
       showtimeId: {
         type: DataTypes.UUID,
         references: {
-            model:Showtimes,
+            model:Showtime,
       }
       }
   }); 
 
-  Seats.sync().then(() => {
+  Seat.sync().then(() => {
     console.log("Seats Model synced");
   });
 
- export default Seats
+ export default Seat

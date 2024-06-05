@@ -1,32 +1,21 @@
-import { ShowtimeDb } from "./showtimes.repos";
+import showtimesRepos from "./showtimes.repos";
 import { ShowtimesType } from "./types/showtimes";
-import { Seats } from "../database/models/Seat";
+import { Seat } from "../database/models/Seat";
+import { v4 as uuidv4 } from 'uuid';
 
-export class showTimeService {
-    constructor(private readonly db:ShowtimeDb){}
+ class showTimeService {
 
     async createShowtimes(dto:ShowtimesType):Promise<any>{
-        return this.db.createShowtime(dto)
+        return showtimesRepos.createShowtime(dto)
     }
 
     async getShowtimes(movieId:string):Promise<any>{
-        return this.db.getShowtimes(movieId)
+        return showtimesRepos.getShowtimes(movieId)
     }
 
     async deleteShowtimes(id:string):Promise<any>{
-        return this.db.deleteShowtimes(id)
-    }
-
-    async createShowtimesSeats(theaterId:string,showtimeId:string){
-        const noOfSeats = 100
-        for(let i=1;i<=noOfSeats;i++){
-            await Seats.create({
-                theaterId,
-                seatnumber: i,
-                availability: true,
-                showtimeId
-            })
-
-        }
+        return showtimesRepos.deleteShowtimes(id)
     }
 }
+
+export default new showTimeService

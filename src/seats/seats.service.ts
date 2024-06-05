@@ -1,26 +1,27 @@
-import { seatDB } from "./seats.repos";
+import seatsRepos from "./seats.repos";
 import { SeatType } from "./types/seat.type";
 
-export class seatService {
-    constructor(private readonly db:seatDB){}
+ class seatService {
   
-    async createSeatByShowtimes(seat:SeatType){
-        return this.db.createShowtimesSeat(seat)
+    async createSeatByShowtimes(seat:SeatType):Promise<any>{
+        return seatsRepos.createShowtimesSeat(seat)
     }
 
-    async fetchSeatByShowtimes(showtimeId:string){
-        return this.db.getShowtimesSeat(showtimeId)
+    async fetchSeatByShowtimes(showtimeId:string):Promise<any>{
+        return seatsRepos.getShowtimesSeat(showtimeId)
     }
 
-    async chooseSeatByShowtimes(seatId:string,seatNo:number){
-        return this.db.chooseSeat(seatId,seatNo)
+    async chooseSeatByShowtimes(seatId:string,seatNo:number):Promise<any>{
+        return seatsRepos.chooseSeat(seatId,seatNo)
     }
 
-    fetchAvailableSeats(showtimeId:string){
-        return this.db.fetchAvailableSeats(showtimeId)
+    fetchAvailableSeats(showtimeId:string):Promise<any>{
+        return seatsRepos.fetchAvailableSeats(showtimeId)
     }
 
-    fetchUnAvailableSeats(showtimeId:string){
-        return this.db.fetchUnAvailableSeats(showtimeId)
+    fetchUnAvailableSeats(showtimeId:string):Promise<any>{
+        return seatsRepos.fetchUnAvailableSeats(showtimeId)
     }
 }
+
+export default new seatService

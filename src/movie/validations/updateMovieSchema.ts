@@ -1,7 +1,6 @@
 import Joi from 'joi';
 
 const updateMovieSchema = Joi.object({
-    id: Joi.string(),
     title: Joi.string(),
     genre: Joi.string(),
     duration: Joi.number(),

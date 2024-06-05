@@ -1,14 +1,15 @@
-import { bookingDb } from "./booking.repos";
+import bookingRepos from "./booking.repos";
 import { BookingType } from "./types/booking.types";
 
-export class bookingsService {
-    constructor(private readonly db:bookingDb){}
+class bookingsService {
 
     async createBooking(dto:BookingType):Promise<any>{
-        return this.db.createBooking(dto)
+        return bookingRepos.createBooking(dto)
     }
 
     async verifyBooking(bookingId:string):Promise<any>{
-        return this.db.findBookingById(bookingId)
+        return bookingRepos.findBookingById(bookingId)
     }
 }
+
+export default new bookingsService

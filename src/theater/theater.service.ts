@@ -1,22 +1,23 @@
-import { theaterDB } from "./theater.repos";
+import theaterRepos from "./theater.repos";
 import { TheaterType } from "./types";
 
-export class theaterService {
-    constructor(private readonly db:theaterDB){}
+class theaterService {
 
     async createTheater(theater:TheaterType){
-        return await this.db.createTheater(theater)
+        return await theaterRepos.createTheater(theater)
     }
 
     async deleteTheater(id:string):Promise<any>{
-        return await this.db.deleteTheater(id)
+        return await theaterRepos.deleteTheater(id)
     }
 
-    async getTheater(id:string):Promise<TheaterType>{
-       return await this.db.getSingleTheater(id)
+    async getTheater(id:string):Promise<any>{
+       return await theaterRepos.getSingleTheater(id)
     }
 
-    async getAllTheaters():Promise<TheaterType[]>{
-        return await this.db.getAllTheaters()
+    async getAllTheaters():Promise<any>{
+        return await theaterRepos.getAllTheaters()
     }
 }
+
+export default new theaterService

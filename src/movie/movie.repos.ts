@@ -2,7 +2,7 @@ import { where } from "sequelize";
 import { Movie } from "../database/models/Movie";
 import { MovieType } from './types/movieType';
 
-export class movieDB{
+ class movieDB{
     createMovie(movie:MovieType){
         const {id,title,genre,duration,rating,posterimg,expiryDate,theaterId} = movie
         return Movie.create({
@@ -29,11 +29,15 @@ export class movieDB{
 
 
     getMoviesByTitle(title:string){
-        return Movie.findAll({
-            where:{
-                title:title,
-            }
-        })
+        try{
+            return Movie.findAll({
+                where:{
+                    title:title,
+                }
+            })
+        }catch(e:any){
+            return e
+        }
     }
 
     
@@ -70,3 +74,5 @@ export class movieDB{
         })
     }
 }
+
+export default new movieDB

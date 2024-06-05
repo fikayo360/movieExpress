@@ -1,7 +1,8 @@
 import logger from '../config/logger';
 import { TokenPayload } from '../interfaces/tokenPayload';
 import {Request, Response,NextFunction} from 'express'
-const StatusCodes = require('http-status-codes')
+import jwt, {  Secret } from 'jsonwebtoken';
+import { StatusCodes } from 'http-status-codes';
 const isTokenValid = require('../services/isTokenValid')
 
 export const authUser = async (req:Request, res: Response, next: NextFunction) => {
@@ -14,8 +15,9 @@ export const authUser = async (req:Request, res: Response, next: NextFunction) =
     const tokenData = authHeader.split(" ");
     const token = tokenData[1]; 
     try {
-      const { username, userId } =  isTokenValid(token) as TokenPayload;
-      req.user = { username, userId };
+      const { sub,email,role } =  isTokenValid(token) as TokenPayload;
+      console.log({ sub,email,role } );
+      req.user = { sub,email,role } 
       next();
     } catch (error) {
         logger.error('token expired')
@@ -26,7 +28,7 @@ export const authUser = async (req:Request, res: Response, next: NextFunction) =
 export const isAdmin = async (req:Request, res: Response, next: NextFunction) =>{
   const user = req.user
   if(user.role === "admin"){
-    logger.info(`welcome admin ${user.username}`)
+    logger.info(`welcome admin ${user.sub}`)
     next();
   }
   else{

@@ -1,22 +1,15 @@
 import { DataTypes } from "sequelize"
 import sequelizee from "../postgresConfig";
 import { User } from "./User";
-import { Showtimes } from "./Showtimes";
+import { Showtime } from "./Showtime";
 
-const Bookings = sequelizee.define('Bookings', {
+const Booking = sequelizee.define('Bookings', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
       },
-      theaterId: {
-        type: DataTypes.UUID
-      },
       seatnumber: {
         type: DataTypes.INTEGER
-      },
-      availability: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true
       },
       userId: {
         type: DataTypes.UUID,
@@ -24,16 +17,19 @@ const Bookings = sequelizee.define('Bookings', {
             model:User,
       }
     },
+    totalPrice:{
+      type: DataTypes.INTEGER
+    },
       showtimeId: {
         type: DataTypes.UUID,
         references: {
-            model:Showtimes,
+            model:Showtime,
       }
       }
   }); 
 
-  Bookings.sync({  }).then(() => {
+  Booking.sync().then(() => {
     console.log("Bookings Model synced");
   });
 
-  export default Bookings
+  export default Booking

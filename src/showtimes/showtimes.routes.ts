@@ -1,8 +1,10 @@
 import express, { Router } from 'express';
-import { showtimeController } from './showtimes.controller';
+import showtimesController from './showtimes.controller';
 const router:Router = express.Router()
-const showtimes = showtimeController.prototype
+import { authUser } from '../shared/middleware/auth';
 
-router.route("/create").post(showtimes.createShowtime)
-router.route("/getShowtimes").put(showtimes.getShowtime)
-router.route("/delete").post(showtimes.deleteShowtime)
+router.route("/create").post(authUser,showtimesController.createShowtime)
+router.route("/getShowtimes/:movieId").get(authUser,showtimesController.getShowtime)
+router.route("/delete/:id").delete(authUser,showtimesController.deleteShowtime)
+
+export default router

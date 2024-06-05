@@ -1,9 +1,8 @@
 import Joi from 'joi';
 
 const createSeatSchema = Joi.object({
-    theaterId: Joi.string().email().required(),
-    seatNumber: Joi.string().required(),
-    availability: Joi.string().min(4).required(),
+    theaterId: Joi.string().required(),
+    seatnumber: Joi.number().required(),
     showtimeId: Joi.string().required()
   });
 

@@ -1,6 +1,7 @@
 export interface TokenPayload {
-    username: string;
-    userId: string;
+  sub: string,
+  email: string,
+  role: string
 }
 
 export type Tokens = {

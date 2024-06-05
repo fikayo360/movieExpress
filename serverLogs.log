@@ -1,0 +1,58 @@
+{"level":"info","message":"User created successfully","timestamp":"2024-05-29T23:51:20.414Z"}
+{"level":"info","message":"User created successfully","timestamp":"2024-05-29T23:55:44.235Z"}
+{"level":"info","message":"User created successfully","timestamp":"2024-05-30T00:00:52.009Z"}
+{"level":"error","message":"user does not exist","timestamp":"2024-05-30T02:54:10.731Z"}
+{"level":"info","message":"reset token sent succesfully","timestamp":"2024-05-30T03:08:44.013Z"}
+{"level":"info","message":"password updated succesfully","timestamp":"2024-05-30T03:12:04.353Z"}
+{"level":"error","message":"wrong password","timestamp":"2024-05-30T03:15:06.087Z"}
+{"level":"error","message":"user not found","timestamp":"2024-05-30T03:32:52.804Z"}
+{"level":"error","message":"user does not exist","timestamp":"2024-05-30T03:47:31.416Z"}
+{"level":"error","message":"the refresh token is not valid","timestamp":"2024-05-30T03:54:17.068Z"}
+{"level":"error","message":"the refresh token is not valid","timestamp":"2024-05-30T03:54:57.233Z"}
+{"level":"error","message":"the refresh token is not valid","timestamp":"2024-05-30T03:56:31.648Z"}
+{"level":"error","message":"the refresh token is not valid","timestamp":"2024-05-30T03:59:52.555Z"}
+{"level":"info","message":"logged out succesfully","timestamp":"2024-05-30T04:07:38.918Z"}
+{"level":"error","message":"no token! access denied","timestamp":"2024-05-30T10:02:52.394Z"}
+{"level":"error","message":"wrong password","timestamp":"2024-05-30T10:03:47.562Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:04:58.563Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:10:01.428Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:10:50.976Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:12:08.993Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:15:40.072Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:16:17.003Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:19:19.731Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:20:21.007Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:23:41.358Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:24:21.782Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:24:46.136Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:32:12.104Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:37:46.000Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:39:46.427Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:42:56.187Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:50:34.221Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:52:29.736Z"}
+{"level":"error","message":"token expired","timestamp":"2024-05-30T10:59:38.259Z"}
+{"level":"info","message":"theater created succesfully","timestamp":"2024-05-30T12:23:59.744Z"}
+{"level":"info","message":"theater created succesfully","timestamp":"2024-05-30T12:24:21.887Z"}
+{"level":"info","message":"theater created succesfully","timestamp":"2024-05-30T12:24:46.216Z"}
+{"level":"info","message":"theater deleted successfully","timestamp":"2024-05-30T12:29:05.988Z"}
+{"level":"info","message":"movie created successfully","timestamp":"2024-05-30T12:39:45.043Z"}
+{"level":"info","message":"movie created successfully","timestamp":"2024-05-30T12:40:11.658Z"}
+{"level":"info","message":"movie created successfully","timestamp":"2024-05-30T12:40:32.471Z"}
+{"level":"info","message":"movie created successfully","timestamp":"2024-05-30T12:40:44.876Z"}
+{"level":"info","message":"movie created successfully","timestamp":"2024-05-30T12:41:16.309Z"}
+{"level":"info","message":"movie updated successfully","timestamp":"2024-05-30T13:03:38.336Z"}
+{"level":"info","message":"Movie deleted successfully","timestamp":"2024-05-30T13:05:29.444Z"}
+{"level":"info","message":"showtime created succesfully","timestamp":"2024-05-30T21:14:11.940Z"}
+{"level":"info","message":"showtime created succesfully","timestamp":"2024-05-30T21:24:08.076Z"}
+{"level":"info","message":"showtime created succesfully","timestamp":"2024-05-30T21:25:53.696Z"}
+{"level":"info","message":"showtime created succesfully","timestamp":"2024-05-30T21:41:52.719Z"}
+{"level":"error","message":"showtime deleted succesfully","timestamp":"2024-05-30T21:49:28.096Z"}
+{"level":"info","message":"seat created succesfully","timestamp":"2024-05-30T22:12:17.377Z"}
+{"level":"info","message":"seat created succesfully","timestamp":"2024-05-30T22:12:27.998Z"}
+{"level":"info","message":"seat created succesfully","timestamp":"2024-05-30T22:12:35.356Z"}
+{"level":"info","message":"seat created succesfully","timestamp":"2024-05-30T22:12:40.788Z"}
+{"level":"info","message":"seat chosen succesfully","timestamp":"2024-05-30T22:29:17.855Z"}
+{"level":"info","message":"booking created succesfully","timestamp":"2024-05-30T23:08:51.047Z"}
+{"level":"info","message":"booking created succesfully","timestamp":"2024-05-30T23:12:32.521Z"}
+{"level":"info","message":"booking verified successfully","timestamp":"2024-05-30T23:13:34.323Z"}

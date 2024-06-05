@@ -1,9 +1,13 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Movie = void 0;
 var sequelize_1 = require("sequelize");
-var sequelizee = require('../postgresConfig');
-var Theater = require('../models/Theater');
-var Movie = sequelizee.define('Movie', {
+var postgresConfig_1 = __importDefault(require("../postgresConfig"));
+var Theater_1 = require("./Theater");
+exports.Movie = postgresConfig_1.default.define('Movie', {
     id: {
         type: sequelize_1.DataTypes.UUID,
         primaryKey: true,
@@ -18,7 +22,7 @@ var Movie = sequelizee.define('Movie', {
         type: sequelize_1.DataTypes.INTEGER
     },
     rating: {
-        type: sequelize_1.DataTypes.FLOAT
+        type: sequelize_1.DataTypes.INTEGER
     },
     posterimg: {
         type: sequelize_1.DataTypes.STRING
@@ -29,11 +33,11 @@ var Movie = sequelizee.define('Movie', {
     theaterId: {
         type: sequelize_1.DataTypes.UUID,
         references: {
-            model: Theater,
+            model: Theater_1.Theater,
         }
     }
 });
-Movie.sync({ force: true }).then(function () {
+exports.Movie.sync().then(function () {
     console.log("Movie Model synced");
 });
-module.exports = Movie;
+exports.default = exports.Movie;

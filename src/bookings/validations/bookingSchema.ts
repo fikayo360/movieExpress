@@ -1,11 +1,9 @@
 import Joi from 'joi';
 
 const createBookingSchema = Joi.object({
-    id:Joi.string().required(),
     userId:Joi.string().required(),
-    theaterId: Joi.string().required(),
-    seatNumber: Joi.string().required(),
-    availability: Joi.string().min(4).required(),
+    totalPrice:Joi.number().required(),
+    seatnumber: Joi.number().required(),
     showtimeId: Joi.string().required()
   });
 

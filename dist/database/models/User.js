@@ -1,8 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.User = void 0;
 var sequelize_1 = require("sequelize");
-var sequelizee = require('../postgresConfig');
-var User = sequelizee.define('User', {
+var postgresConfig_1 = __importDefault(require("../postgresConfig"));
+exports.User = postgresConfig_1.default.define('User', {
     id: {
         type: sequelize_1.DataTypes.UUID,
         primaryKey: true,
@@ -24,9 +28,17 @@ var User = sequelizee.define('User', {
     password: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
+    },
+    role: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    resettoken: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    hashedRt: {
+        type: sequelize_1.DataTypes.STRING
     }
 });
-User.sync({ force: true }).then(function () {
+exports.User.sync().then(function () {
     console.log("User Model synced");
 });
-module.exports = User;

@@ -1,7 +1,7 @@
 import { Theater } from "../database/models/Theater";
 import { TheaterType } from "./types";
 
-export class theaterDB {
+ class theaterDB {
 
     createTheater(theater:TheaterType){
         const {id,name,location,seatingCapacity} = theater
@@ -30,3 +30,5 @@ export class theaterDB {
         })
     }
 }
+
+export default new theaterDB

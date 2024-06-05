@@ -1,7 +1,6 @@
 import Joi from 'joi';
 
 const createMovieSchema = Joi.object({
-    id: Joi.string(),
     title: Joi.string().required(),
     genre: Joi.string().required(),
     duration: Joi.number().required(),

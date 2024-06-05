@@ -1,20 +1,23 @@
 import { where } from "sequelize";
-import Bookings from "../database/models/Bookings";
+import Booking from "../database/models/Booking";
 import { BookingType } from "./types/booking.types";
 
-export class bookingDb {
+class bookingDb {
     createBooking(dto:BookingType){
-        const {id,userId,theaterId,showtimeId,availability,seatNumber} = dto
-        return Bookings.create({
-            id,userId,theaterId,showtimeId,availability,seatNumber
+        const {id,userId,showtimeId,seatnumber,totalPrice} = dto
+        console.log({id,userId,showtimeId,seatnumber,totalPrice});
+        return Booking.create({
+            id,userId,showtimeId,seatnumber,totalPrice
         })
     }
 
     findBookingById(bookingId:string){
-        return Bookings.findAll({
+        return Booking.findAll({
             where:{
                 id:bookingId,
             }
         })
     }
 }
+
+export default new bookingDb

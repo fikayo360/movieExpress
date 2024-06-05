@@ -1,19 +1,18 @@
-import { movieDB } from "./movie.repos";
+import movieRepos from "./movie.repos";
 import { MovieType,MovieQueryType } from "./types";
 
-export class movieService{
-    constructor(private readonly db:movieDB){}
+ class movieService{
 
     async createMovie(movie:MovieType):Promise<any>{
-        return this.db.createMovie(movie)
+        return movieRepos.createMovie(movie)
     }
 
     async updateMovie(updateData:MovieType,movieId:string):Promise<any>{
-        return this.db.updateMovie(updateData,movieId)
+        return movieRepos.updateMovie(updateData,movieId)
     }
 
     async deleteMovie(movieId:string){
-        return this.db.deleteMovie(movieId)
+        return movieRepos.deleteMovie(movieId)
     }
     
     async searchMovie(query:MovieQueryType){
@@ -23,22 +22,24 @@ export class movieService{
         const genre = query.genre
 
         if(title){
-            return this.db.getMoviesByTitle(title)
+            return movieRepos.getMoviesByTitle(title)
         }
         if(duration){
-            return this.db.getMoviesByDuration(duration)
+            return movieRepos.getMoviesByDuration(duration)
         }
         if(rating){
-            return this.db.getMoviesByRating(rating)
+            return movieRepos.getMoviesByRating(rating)
         }
         if(genre){
-            return this.db.getMoviesByGenre(genre)
+            return movieRepos.getMoviesByGenre(genre)
         }
 
-        return this.db.findAllMovies()
+        return movieRepos.findAllMovies()
     }
 
     getMoviesByTheaterId(theaterId: string){
-        return this.db.getMoviesByTheater(theaterId)
+        return movieRepos.getMoviesByTheater(theaterId)
     }
 }
+
+export default new movieService
